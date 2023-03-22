@@ -91,6 +91,7 @@ public class JanelaPai {
 	/**
 	 * This method initializes jPanel	
 	 * 	inicio do codigo
+	 * mais um txt
 	 * @return javax.swing.JPanel	
 	 */
 	private JPanel getJPanel() {
