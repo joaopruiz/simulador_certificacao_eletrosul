@@ -1,0 +1,22 @@
+package simulador.dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+import simulador.dao.xml.Configuracao_xml;
+import simulador.dao.xml.Server_xml;
+
+public class Conexao {
+    public Connection getConexao() throws Exception{
+        Connection con;
+        Configuracao_xml server = new Configuracao_xml();
+		Server_xml s1 = server.LeroXml();
+        Class.forName(s1.getDriver());
+        
+        con = DriverManager.getConnection(s1.getUrl(),s1.getUser(),s1.getPassword());
+        
+        System.out.println("Conectado!!!");
+        
+        return con;
+    }
+}
