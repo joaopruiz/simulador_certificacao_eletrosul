@@ -1,0 +1,108 @@
+package simulador.model;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import simulador.dao.Conexao;
+import simulador.view.Mensagens;
+
+public class Janelapai_metodos {
+	 private Connection con;
+	    
+	 /*public Janelapai_metodos(){
+		 try {
+			con = new Conexao().getConexao();
+		} catch (Exception e) {
+			Mensagens mensagens = new Mensagens();
+			mensagens.MensagemdeErroDB(e.toString());
+			e.printStackTrace();
+		}
+	 }*/
+	 public boolean Verifica_Usuario(String usuario, String senha){
+		 boolean flag=false;
+		 try {
+				con = new Conexao().getConexao();
+			} catch (Exception e) {
+				Mensagens mensagens = new Mensagens();
+				mensagens.MensagemdeErroDB(e.toString());
+				e.printStackTrace();
+			}
+		 try {
+				PreparedStatement stmt = con.prepareStatement("select * from usuariostb where usuarios like ? and senha like ?");
+				stmt.setString(1, usuario);
+				stmt.setString(2, senha);
+				ResultSet rs = stmt.executeQuery();
+				if ( rs.next() ) {
+					flag=true;
+				}
+	      rs.close();
+	      stmt.close();
+	      con.close();
+	      System.out.println("Fechou a conexao.");
+			} catch (SQLException e) {
+				Mensagens mensagens = new Mensagens();
+				mensagens.MensagemdeErro(e.toString());
+				e.printStackTrace();
+			}
+		 
+		 return flag;
+	 }
+	 public int retornID(String usuario){
+		 try {
+				con = new Conexao().getConexao();
+			} catch (Exception e) {
+				Mensagens mensagens = new Mensagens();
+				mensagens.MensagemdeErroDB(e.toString());
+				e.printStackTrace();
+			}
+		 int i=0;
+		 try {
+				PreparedStatement stmt = con.prepareStatement("select * from usuariostb where usuarios like ?");
+				stmt.setString(1, usuario);
+		
+				ResultSet rs = stmt.executeQuery();
+				if ( rs.next() ) {
+					i=rs.getInt("idUsuariosTB");
+				}
+	      rs.close();
+	      stmt.close();
+	      con.close();
+	      System.out.println("Fechou a conexao.");
+			} catch (SQLException e) {
+				Mensagens mensagens = new Mensagens();
+				mensagens.MensagemdeErro(e.toString());
+				e.printStackTrace();
+			}
+		 return i;
+	 }
+	 public int retornTipo(String usuario){
+		 try {
+				con = new Conexao().getConexao();
+			} catch (Exception e) {
+				Mensagens mensagens = new Mensagens();
+				mensagens.MensagemdeErroDB(e.toString());
+				e.printStackTrace();
+			}
+		 int i=0;
+		 try {
+				PreparedStatement stmt = con.prepareStatement("select * from usuariostb where usuarios like ?");
+				stmt.setString(1, usuario);
+		
+				ResultSet rs = stmt.executeQuery();
+				if ( rs.next() ) {
+					i=rs.getInt("tipo");
+				}
+	      rs.close();
+	      stmt.close();
+	      con.close();
+	      System.out.println("Fechou a conexao.");
+			} catch (SQLException e) {
+				Mensagens mensagens = new Mensagens();
+				mensagens.MensagemdeErro(e.toString());
+				e.printStackTrace();
+			}
+		 return i;
+	 }
+}

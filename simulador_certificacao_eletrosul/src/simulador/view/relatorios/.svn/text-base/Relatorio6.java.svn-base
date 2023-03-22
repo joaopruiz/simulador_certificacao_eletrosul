@@ -1,0 +1,42 @@
+package simulador.view.relatorios;
+
+import simulador.model.relatorios.ReportUtils;
+import simulador.dao.Conexao;
+import java.io.InputStream;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+import net.sf.jasperreports.engine.JRException;
+
+public class Relatorio6 {
+
+    /*public static void main(String[] args) {
+        new Jasper_teste().abrirRelatorioClientes();
+    }*/
+
+    public void abrirRelatorio(Integer id) {
+    	InputStream inputStream = getClass().getResourceAsStream("/estatisticas_do_simulado_perguntas.jasper");
+
+        // mapa de parâmetros do relatório 
+        Map<String, Integer> parametros = new HashMap<String, Integer>();
+        parametros.put( "id_simulado", id );
+        
+        try {
+
+            // abre o relatório
+        	Conexao conexao1 = new Conexao();
+        	ReportUtils.openReport( "Simulador Certificação - Estatísticas dos Erros e Acertos", inputStream, parametros,
+                   conexao1.getConexao() );
+
+        } catch ( SQLException exc ) {
+            exc.printStackTrace();
+        } catch ( JRException exc ) {
+            exc.printStackTrace();
+        } catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+    }
+
+}

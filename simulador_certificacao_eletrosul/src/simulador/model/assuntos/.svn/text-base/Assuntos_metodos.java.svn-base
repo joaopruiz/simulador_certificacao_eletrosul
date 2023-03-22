@@ -1,0 +1,106 @@
+package simulador.model.assuntos;
+
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
+import simulador.dao.Conexao;
+import simulador.view.Mensagens;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class Assuntos_metodos {
+	 private Connection con;
+	    
+	 public Assuntos_metodos(){
+		 try {
+			con = new Conexao().getConexao();
+		} catch (Exception e) {
+			Mensagens mensagens = new Mensagens();
+			mensagens.MensagemdeErroDB(e.toString());
+			e.printStackTrace();
+		}
+	 }
+
+	public DefaultTableModel PreencheraJtable(){
+		String[] colunasTabela = new String[]{"ID_Assunto", "Sescrição Assunto"};  
+		DefaultTableModel modelo = new DefaultTableModel(null, colunasTabela) {    
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			public boolean isCellEditable(int rowIndex, int mColIndex){  
+				return false;  
+				}           
+			};  
+        try {
+			PreparedStatement stmt = con.prepareStatement("select * from assuntotb;");
+			ResultSet rs = stmt.executeQuery();
+			if ( rs.next() ) {
+				do{
+					//System.out.println("entrou no while"); 
+					modelo.addRow(new Object[]{
+						rs.getInt("id_AssuntoTB"),
+						rs.getString("descricaoid_AssuntoTB"),
+					});	
+				}
+				while( rs.next() );{}
+			}
+      rs.close();
+      stmt.close();
+		} catch (SQLException e) {
+			Mensagens mensagens = new Mensagens();
+			mensagens.MensagemdeErro(e.toString());
+			e.printStackTrace();
+		}
+    return modelo;
+	}
+	public void Salvar_novo_registroJtable(Assuntotb assuntotb){
+		 try {
+			PreparedStatement stmt = con.prepareStatement("insert into assuntotb (descricaoid_AssuntoTB) values(?)");
+ 
+			 	stmt.setString(1, assuntotb.getDescricaoid_AssuntoTB());
+ 
+			 stmt.executeUpdate();
+			 stmt.close();
+		} catch (SQLException e) {
+			Mensagens mensagens = new Mensagens();
+			mensagens.MensagemdeErro(e.toString());
+			e.printStackTrace();
+		}
+
+	}
+	public void atualizar_registroJtable(Assuntotb assuntotb){
+		try {
+			PreparedStatement stmt = con.prepareStatement("update assuntotb set descricaoid_AssuntoTB=?"+
+			" where id_AssuntoTB=?");
+ 
+			 	stmt.setString(1, assuntotb.getDescricaoid_AssuntoTB());
+			 	stmt.setInt(2, assuntotb.getId_AssuntoTB());
+ 
+			stmt.executeUpdate();
+			stmt.close();
+		} catch (SQLException e) {
+			Mensagens mensagens = new Mensagens();
+			mensagens.MensagemdeErro(e.toString());
+			e.printStackTrace();
+		}
+
+	}
+	public void apagar_registroJtable(int id){
+		try {
+			PreparedStatement stmt = con.prepareStatement("delete from assuntotb where id_AssuntoTB=?");
+ 
+			 	stmt.setInt(1, id);
+ 
+			stmt.executeUpdate();
+			stmt.close();
+		} catch (SQLException e) {
+			Mensagens mensagens = new Mensagens();
+			mensagens.MensagemdeErro(e.toString());
+			e.printStackTrace();
+		}
+
+	}
+}

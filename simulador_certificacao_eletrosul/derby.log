@@ -1,0 +1,10 @@
+----------------------------------------------------------------
+Thu Jan 29 21:23:37 BRST 2015:
+ Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.8.2.2 - (1181258): instância a816c00e-014b-3801-d030-000000e4fdd8
+no diretório de banco de dados D:\REDE\eclipse-jee-indigo-SR2-win32\eclipse\Workspace\SimuladorCertificacao\simuladordb  
+
+java.vendor=Sun Microsystems Inc.
+java.runtime.version=1.6.0_32-b05
+user.dir=D:\REDE\eclipse-jee-indigo-SR2-win32\eclipse\Workspace\SimuladorCertificacao
+derby.system.home=null
+Carregador de classe do banco de dados iniciado - derby.database.classpath=''
