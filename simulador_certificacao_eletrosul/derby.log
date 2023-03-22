@@ -1,10 +1,10 @@
 ----------------------------------------------------------------
-Tue Mar 21 20:25:36 BRT 2023:
- Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.8.2.2 - (1181258): instância a816c00e-0187-067e-0ac5-00000f6f44f8
-no diretório de banco de dados C:\Users\joaop\OneDrive\Documentos\Workspace\simulador_certificacao_eletrosul\simuladordb  
+Tue Mar 21 20:44:30 BRT 2023:
+ Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.8.2.2 - (1181258): instância a816c00e-0187-068f-5880-00000f6d42b8
+no diretório de banco de dados C:\Users\joaop\OneDrive\Documentos\Github\simulador_certificacao_eletrosul\simuladordb  
 
 java.vendor=Eclipse Adoptium
 java.runtime.version=17.0.6+10
-user.dir=C:\Users\joaop\OneDrive\Documentos\Workspace\simulador_certificacao_eletrosul
+user.dir=C:\Users\joaop\OneDrive\Documentos\Github\simulador_certificacao_eletrosul
 derby.system.home=null
 Carregador de classe do banco de dados iniciado - derby.database.classpath=''
